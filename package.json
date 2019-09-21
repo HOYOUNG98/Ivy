@@ -24,7 +24,7 @@
     "build:watch": "tsc -w -p tsconfig.release.json",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "start": "node ./dist/main.js"
+    "start": "tsc && node ./dist/main.js"
   },
   "license": "Apache-2.0",
   "dependencies": {

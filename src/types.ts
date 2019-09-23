@@ -15,3 +15,8 @@ export interface String {
   length: number;
   typeCase: string;
 }
+
+export interface Number {
+  min: number;
+  max: number;
+}

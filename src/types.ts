@@ -1,3 +1,4 @@
+// TODO: change type names with project names as prefixes
 export interface Handler {
   next: Handler;
   setNext: (handler: Handler) => void;

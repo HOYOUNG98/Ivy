@@ -1,8 +1,8 @@
 import { Message, Number } from '../types';
-import { Helper } from '../models/Helper';
+import { Handler } from '../models/Handler';
 
-export class NumberHandler extends Helper {
-  protected constructor() {
+export class NumberHandler extends Handler {
+  constructor() {
     super();
   }
   protected parseNumberReq = (value: string): Number => {
@@ -31,7 +31,7 @@ export class NumberHandler extends Helper {
     return result;
   };
 
-  processNumber = (message: Message): Message => {
+  processor = (message: Message): Message => {
     const entries = Object.entries(message.template);
     for (const [name, value] of entries) {
       if (value.split(' ')[0] === 'number') {

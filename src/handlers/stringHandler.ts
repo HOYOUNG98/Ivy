@@ -1,8 +1,8 @@
 import { Message, String } from '../types';
-import { Helper } from '../models/Helper';
+import { Handler } from '../models/Handler';
 
-export class StringHandler extends Helper {
-  protected constructor() {
+export class StringHandler extends Handler {
+  constructor() {
     super();
   }
 
@@ -38,7 +38,7 @@ export class StringHandler extends Helper {
     return result;
   };
 
-  processString = (message: Message): Message => {
+  processor = (message: Message): Message => {
     const entries = Object.entries(message.template);
     for (const [name, value] of entries) {
       if (value.split(' ')[0] === 'string') {

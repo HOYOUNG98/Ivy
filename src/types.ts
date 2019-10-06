@@ -1,9 +1,4 @@
 // TODO: change type names with project names as prefixes
-export interface Handler {
-  next: Handler;
-  setNext: (handler: Handler) => void;
-  process: (message: Message) => Message;
-}
 
 export interface Message {
   url: string;

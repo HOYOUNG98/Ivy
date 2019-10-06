@@ -1,4 +1,5 @@
-import { Handler, Message } from '../types';
+import { Handler } from './Handler';
+import { Message } from '../types';
 
 export class Chain {
   chain: Handler;
@@ -18,7 +19,7 @@ export class Chain {
     });
   }
 
-  execute = () => {
-    this.chain.process(this.message);
+  execute = (): Message => {
+    return this.chain.process(this.message);
   };
 }

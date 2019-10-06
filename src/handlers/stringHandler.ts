@@ -51,6 +51,7 @@ export class StringHandler extends Handler {
         );
       }
     }
+    console.log(message.result);
     return message;
   };
 }

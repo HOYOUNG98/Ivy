@@ -17,11 +17,15 @@ app.get('/', (req: Request, res: Response) => {
 
 app.get('/process', (req: Request, res: Response) => {
   const { url, quantity, template } = req.body;
+  var result = new Array();
+  for (var i = 0; i < quantity; i++) {
+    result.push(new Object());
+  }
   const message: Message = {
     url,
     quantity,
     template,
-    result: [],
+    result,
   };
 
   const chain = new Chain([new NumberHandler(), new StringHandler()], message);

@@ -1,6 +1,10 @@
 import { Message, String } from '../types';
 import { Handler } from '../models/Handler';
 
+/*
+  String Format: string [length] [typeCase]
+*/
+
 export class StringHandler extends Handler {
   constructor() {
     super();
@@ -20,19 +24,32 @@ export class StringHandler extends Handler {
   protected generateStrings = (
     name: string,
     req: String,
+    quantity: number,
     result: Array<object>,
   ): Array<object> => {
-    const characters =
+    var characters =
       'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for (var i = 0; i < result.length; i++) {
+    for (var i = 0; i < quantity; i++) {
+      // Check typeCases
+      if (req.typeCase === 'upper') {
+        characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      } else {
+        characters = 'abcdefghijklmnopqrstuvwxyz';
+      }
+
+      // Build the string
+      const charactersLength = characters.length;
       var tempString = '';
       for (var j = 0; j < req.length; j++) {
         tempString += characters.charAt(
           Math.floor(Math.random() * charactersLength),
         );
       }
-      Object.defineProperty(result[i], name, { value: tempString });
+      Object.defineProperty(result[i], name, {
+        value: tempString,
+        enumerable: true,
+        writable: false,
+      });
     }
 
     return result;
@@ -47,6 +64,7 @@ export class StringHandler extends Handler {
         message.result = this.generateStrings(
           name,
           requirements,
+          message.quantity,
           message.result,
         );
       }

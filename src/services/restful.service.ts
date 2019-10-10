@@ -1,4 +1,8 @@
+// library imports
 import { Response } from 'express';
+
+// local imports
+import { logger } from './logger.service';
 
 export const errorResponse = (
   res: Response,
@@ -7,7 +11,7 @@ export const errorResponse = (
 ) => {
   if (typeof err === 'object' && typeof err.message !== 'undefined') {
     err = err.message;
-    console.log(err);
+    logger.error(err);
   }
 
   return res
@@ -21,6 +25,7 @@ export const successResponse = (res: Response, data: {}, code = 200) => {
 
   if (typeof data === 'object') {
     sendData = Object.assign(data, sendData);
+    logger.info(sendData);
   }
 
   return res.status(code).json(sendData);

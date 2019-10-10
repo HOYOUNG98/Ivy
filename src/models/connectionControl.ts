@@ -7,7 +7,7 @@ import { Message } from '../types';
 import { NumberHandler } from '../handlers/numberHandler';
 import { StringHandler } from '../handlers/stringHandler';
 import { Chain } from './Chain';
-import { successResponse, errorResponse } from 'src/services/restful.service';
+import { successResponse, errorResponse } from '../services/restful.service';
 
 // TODO: Work on error handling
 

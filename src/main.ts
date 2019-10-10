@@ -4,6 +4,7 @@ import bp from 'body-parser';
 
 // local imports
 import { process } from './models/connectionControl';
+import { logger } from './services/logger.service';
 
 export const app: express.Application = express();
 
@@ -17,5 +18,5 @@ app.get('/', (req: Request, res: Response) => {
 app.post('/process', process);
 
 app.listen(4000, () => {
-  console.log('Server is running on port 4000');
+  logger.info('Server is running on port 4000');
 });

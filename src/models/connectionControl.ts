@@ -7,6 +7,7 @@ import { Message } from '../types';
 import { NumberHandler } from '../handlers/numberHandler';
 import { StringHandler } from '../handlers/stringHandler';
 import { Chain } from './Chain';
+import { successResponse, errorResponse } from 'src/services/restful.service';
 
 // TODO: Work on error handling
 
@@ -52,18 +53,14 @@ export const sendMessage = (message: Message, res: Response) => {
     axios
       .post(url, result[i])
       .then((response: AxiosResponse) => {
-        console.log(result[i], i, response);
-        res
-          .status(200)
-          .json({ success: true, ...result[i] })
-          .send();
+        successResponse(res, {
+          success: true,
+          AxiosResponse: response,
+          data: { ...result[i] },
+        });
       })
       .catch((error: AxiosError) => {
-        console.log(error);
-        res
-          .status(500)
-          .json({ success: false, error, data: null })
-          .send();
+        errorResponse(res, error);
       });
   }
 };

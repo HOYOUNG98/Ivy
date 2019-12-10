@@ -2,9 +2,6 @@
   "name": "petunia",
   "author": "Kevin Kim <kevin16727@gmail.com>",
   "version": "0.0.0",
-  "engines": {
-    "node": ">= 10.13 <11"
-  },
   "devDependencies": {
     "@types/jest": "^24.0.18",
     "@types/node": "^10.14.17",
@@ -24,11 +21,12 @@
     "build:watch": "tsc -w -p tsconfig.release.json",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "start": "node ./dist/main.js"
+    "start": "tsc && node ./dist/main.js"
   },
   "license": "Apache-2.0",
   "dependencies": {
     "@types/express": "^4.17.1",
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "tslib": "~1.10.0"
   }

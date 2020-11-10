@@ -1,4 +1,4 @@
-import { Message, String } from '../types';
+import { Message, StringReq } from '../types';
 import { Handler } from '../models/Handler';
 
 /*
@@ -10,20 +10,9 @@ export class StringHandler extends Handler {
     super();
   }
 
-  protected parseStringReq = (value: string): String => {
-    const splitValue = value.split(' ');
-
-    var string_req: String = {
-      length: parseInt(splitValue[1]),
-      typeCase: splitValue[2],
-    };
-
-    return string_req;
-  };
-
   protected generateStrings = (
     name: string,
-    req: String,
+    req: StringReq,
     quantity: number,
     result: Array<object>,
   ): Array<object> => {
@@ -57,19 +46,17 @@ export class StringHandler extends Handler {
 
   processor = (message: Message): Message => {
     const entries = Object.entries(message.template);
-    for (const [name, value] of entries) {
-      if (value.split(' ')[0] === 'string') {
+    for (const [fieldName, requirements] of entries) {
+      if (requirements.type === 'string') {
         // process the string (Should make a function - middleware? So should this file be in different folder)
-        const requirements = this.parseStringReq(value);
         message.result = this.generateStrings(
-          name,
+          fieldName,
           requirements,
           message.quantity,
           message.result,
         );
       }
     }
-    console.log(message.result);
     return message;
   };
 }

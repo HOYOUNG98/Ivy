@@ -21,13 +21,16 @@
     "build:watch": "tsc -w -p tsconfig.release.json",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "start": "tsc && node ./dist/main.js"
+    "start": "tsc && node ./dist/main.js",
+    "start:dev": "nodemon -e tsc && node ./dist/main.js"
   },
   "license": "Apache-2.0",
   "dependencies": {
     "@types/express": "^4.17.1",
+    "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "tslib": "~1.10.0"
+    "tslib": "~1.10.0",
+    "winston": "^3.2.1"
   }
 }

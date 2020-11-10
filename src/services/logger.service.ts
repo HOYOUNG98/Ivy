@@ -16,7 +16,7 @@ export const logger = createLogger({
     format.splat(),
     format.json(),
   ),
-  defaultMeta: { service: `Petunia ${dateTime}` },
+  defaultMeta: { service: `Ivy ${dateTime}` },
   transports: [
     new transports.Console({
       format: format.combine(format.colorize(), format.simple()),

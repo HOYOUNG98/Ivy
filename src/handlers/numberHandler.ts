@@ -1,4 +1,4 @@
-import { Message, Number } from '../types';
+import { Message, NumberReq } from '../types';
 import { Handler } from '../models/Handler';
 
 /*
@@ -9,20 +9,10 @@ export class NumberHandler extends Handler {
   constructor() {
     super();
   }
-  protected parseNumberReq = (value: string): Number => {
-    const splitValue = value.split(' ');
-
-    var number_req: Number = {
-      min: parseInt(splitValue[1]),
-      max: parseInt(splitValue[2]),
-    };
-
-    return number_req;
-  };
 
   protected generateNumbers = (
     name: string,
-    req: Number,
+    req: NumberReq,
     quantity: number,
     result: Array<object>,
   ): Array<object> => {
@@ -42,11 +32,10 @@ export class NumberHandler extends Handler {
 
   processor = (message: Message): Message => {
     const entries = Object.entries(message.template);
-    for (const [name, value] of entries) {
-      if (value.split(' ')[0] === 'number') {
-        const requirements = this.parseNumberReq(value);
+    for (const [fieldName, requirements] of entries) {
+      if (requirements.type === 'number') {
         const result = this.generateNumbers(
-          name,
+          fieldName,
           requirements,
           message.quantity,
           message.result,

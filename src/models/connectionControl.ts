@@ -15,11 +15,11 @@ export const process = (req: Request, res: Response) => {
   const receivedMessage = receiveMessage(req);
   const processedMessage = processMessage(receivedMessage);
 
-  sendMessage(processedMessage, res);
+  // sendMessage(processedMessage, res);
+  res.send({ data: processedMessage });
 };
 
 export const receiveMessage = (req: Request): Message => {
-  console.log('Receiving Message');
   const { url, quantity, template } = req.body;
   var result = new Array();
 
@@ -33,17 +33,13 @@ export const receiveMessage = (req: Request): Message => {
     template,
     result,
   };
-
-  console.log('Received Message');
   return message;
 };
 
 export const processMessage = (message: Message): Message => {
-  console.log('Processing Message');
   const chain = new Chain([new NumberHandler(), new StringHandler()], message);
   const processedMessage = chain.execute();
 
-  console.log('Processed Message', message);
   return processedMessage;
 };
 

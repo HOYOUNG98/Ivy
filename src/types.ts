@@ -7,12 +7,18 @@ export interface Message {
   result: Array<object>;
 }
 
-export interface String {
+export interface Req {
+  type: 'number' | 'string';
+}
+
+export interface StringReq extends Req {
+  type: 'string';
   length: number;
   typeCase: string;
 }
 
-export interface Number {
-  min: number;
-  max: number;
+export interface NumberReq extends Req {
+  type: 'number';
+  min?: number;
+  max?: number;
 }

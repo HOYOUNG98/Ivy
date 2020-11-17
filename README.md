@@ -35,5 +35,8 @@ To respond to this project, we can simply create a request using Ivy! In the fol
   }
 }
 ```
-
 With this, you will see your database has been updated with 10 new users!
+
+## Purpose of this project
+
+This project is for my personal studies! I am trying to perform good practice of Typescript and Node REST API server. Also, I am using Chain of Responsibility as a software design model. 

@@ -13,8 +13,8 @@ export interface Req {
 
 export interface StringReq extends Req {
   type: 'string';
-  length: number;
-  typeCase: string;
+  length?: number;
+  typeCase?: string;
 }
 
 export interface NumberReq extends Req {

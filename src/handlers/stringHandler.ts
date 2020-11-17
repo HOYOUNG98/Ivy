@@ -16,22 +16,25 @@ export class StringHandler extends Handler {
     quantity: number,
     result: Array<object>,
   ): Array<object> => {
-    var characters =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    // DEFAULT VALUES
+    const typeCase = req.typeCase ? req.typeCase : 'lower';
+    const length = req.length ? req.length : 10;
+    let characters: string;
+
+    // Generate Strings
     for (var i = 0; i < quantity; i++) {
       // Check typeCases
-      if (req.typeCase === 'upper') {
+      if (typeCase === 'upper') {
         characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
       } else {
         characters = 'abcdefghijklmnopqrstuvwxyz';
       }
 
       // Build the string
-      const charactersLength = characters.length;
       var tempString = '';
-      for (var j = 0; j < req.length; j++) {
+      for (var j = 0; j < length; j++) {
         tempString += characters.charAt(
-          Math.floor(Math.random() * charactersLength),
+          Math.floor(Math.random() * characters.length),
         );
       }
       Object.defineProperty(result[i], name, {

@@ -1,4 +1,4 @@
-import { Message, NumberReq } from '../types';
+import { Message, NumberReq, Req } from '../types';
 import { Handler } from '../models/Handler';
 
 /*
@@ -17,9 +17,13 @@ export class NumberHandler extends Handler {
     result: Array<object>,
   ): Array<object> => {
     for (var i = 0; i < quantity; i++) {
-      // The maximum is exclusive and the minimum is inclusive
+      // DEFAULT VALUES
+      const minVal = req.min ? req.min : 0;
+      const maxVal = req.max ? req.max : 10;
+
+      // Generate Numbers
       var tempNumber =
-        Math.floor(Math.random() * (req.max - req.min + 1)) + req.min;
+        Math.floor(Math.random() * (maxVal - minVal + 1)) + minVal;
       Object.defineProperty(result[i], name, {
         value: tempNumber,
         enumerable: true,

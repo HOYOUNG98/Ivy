@@ -8,12 +8,15 @@ import { NumberHandler } from '../handlers/numberHandler';
 import { StringHandler } from '../handlers/stringHandler';
 import { Chain } from './Chain';
 import { successResponse, errorResponse } from '../services/restful.service';
+import { logger } from '../services/logger.service';
 
 // TODO: Work on error handling
 
 export const process = (req: Request, res: Response) => {
   const receivedMessage = receiveMessage(req);
   const processedMessage = processMessage(receivedMessage);
+
+  logger.info('Processed Message!');
 
   // sendMessage(processedMessage, res);
   res.send({ data: processedMessage });
